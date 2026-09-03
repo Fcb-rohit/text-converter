@@ -7,7 +7,8 @@ export type CaseType =
   | 'PascalCase'
   | 'snake_case'
   | 'kebab-case'
-  | 'CONSTANT_CASE';
+  | 'CONSTANT_CASE'
+  | 'aLtErNaTiNg';
 
 export interface CaseConverter {
   id: CaseType;
@@ -100,6 +101,18 @@ export const caseConverters: CaseConverter[] = [
     convert: (text) => {
       const words = splitWords(text.toUpperCase());
       return words.join('_');
+    },
+  },
+  {
+    id: 'aLtErNaTiNg',
+    label: 'aLtErNaTiNg',
+    convert: (text) => {
+      let result = '';
+      for (let i = 0; i <= text.length; i++) {
+        const char = text[i];
+        result += i % 2 === 0 ? char.toLowerCase() : char.toUpperCase();
+      }
+      return result;
     },
   },
 ];
